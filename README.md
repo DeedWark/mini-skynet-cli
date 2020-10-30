@@ -1,7 +1,7 @@
 # Mini Skynet CLI
 
 This tools allow you to upload/download file from SIA Skynet shared plateform easily
-(Made during a Bootcamp project [Theme: "Choosing a file hosting platform and develop a CLI"]
+(Made during a Bootcamp project [Theme: "Choosing a file hosting platform and develop a CLI"])
 ## Installation
 
 ```bash
