@@ -111,7 +111,7 @@ USAGE:
 		"DOWNLOAD      : " + os.Args[0] + " -d vAJjNMDWDTIhZISFiXesRcjgAMfL -o file.png\r\n" +
 		"                " + os.Args[0] + " -d https://siasky.net/vAJjNMDWDTIhZISFiXesRcjgAMfL -o file.png\r\n" +
 		"(EN|DE)CRYPTED: " + os.Args[0] + " -s -u file.png \r\n" +
-		"                " + os.Args[0] + " -s -d vAJjNMDWDTIhZISFiXesRcjgAMfL -o file.png"
+		"                " + os.Args[0] + " -s -d vAJjNMDWDTIhZISFiXesRcjgAMfL -o file.png\r\n"
 	fmt.Printf(ex)
 	os.Exit(1)
 }
