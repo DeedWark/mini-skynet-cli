@@ -27,5 +27,9 @@ skynetcli download skylink #vAJjNMDWDTIhZISFiXesRcjgAMfL
 skynetcli -d vAJjNMDWDTIhZISFiXesRcjgAMfL
 skynetcli --upload https://siasky.net/vAJjNMDWDTIhZISFiXesRcjgAMfL
 ```
+- **Help**
+```bash
+skynetcli -h #--help / help
+```
 ## Me
 [LinkedIn](https://fr.linkedin.com/in/kenji-duriez-9b93bb141)
