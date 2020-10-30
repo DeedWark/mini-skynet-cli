@@ -61,13 +61,13 @@ func downloadFile(linkD string, fileD string) {
 func secureUpload(fileU string) {
 	opts := skynet.DefaultUploadOptions
 
-	//ASK USER A KEY WORD
+	//ASK USER SKYKEY
 	sc := bufio.NewScanner(os.Stdin)
 	fmt.Printf("Skykey: ")
 	sc.Scan()
-	keyWord := sc.Text()
+	skykey := sc.Text()
 
-	opts.SkykeyName = keyWord
+	opts.SkykeyName = skykey
 	skylink, err := client.UploadFile(fileU, opts)
 	if err != nil {
 		panic("Unable to upload: " + err.Error())
@@ -85,9 +85,9 @@ func secureDownload(linkD string, fileD string) {
 	sc := bufio.NewScanner(os.Stdin)
 	fmt.Printf("Skykey: ")
 	sc.Scan()
-	keyWord := sc.Text()
+	skykey := sc.Text()
 
-	opts.SkykeyName = keyWord
+	opts.SkykeyName = skykey
 	err := client.DownloadFile(fileD, linkD, opts)
 	if err != nil {
 		panic("Something went wrong, please try again.\nError: " + err.Error())
