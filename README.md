@@ -26,7 +26,7 @@ skynetcli download skylink #vAJjNMDWDTIhZISFiXesRcjgAMfL
 > *or*
 ``` bash
 skynetcli -d vAJjNMDWDTIhZISFiXesRcjgAMfL
-skynetcli --upload https://siasky.net/vAJjNMDWDTIhZISFiXesRcjgAMfL
+skynetcli --download https://siasky.net/vAJjNMDWDTIhZISFiXesRcjgAMfL
 ```
 - **Help**
 ```bash
