@@ -21,7 +21,7 @@ skynetcli --upload file.png
 ```
 - **Download**
 ```bash
-skynetcli download skylink #vAJjNMDWDTIhZISFiXesRcjgAMfL
+skynetcli download <skylink> #vAJjNMDWDTIhZISFiXesRcjgAMfL
 ```
 > *or*
 ``` bash
