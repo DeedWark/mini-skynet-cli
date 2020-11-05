@@ -174,7 +174,7 @@ func main() {
 		usage()
 	}
 
-	switch os.Args[1] {
+	/*switch os.Args[1] {
 	case "upload":
 		fileU = os.Args[2]
 		uploadFile(fileU)
@@ -182,5 +182,5 @@ func main() {
 		linkD = os.Args[2]
 		fileD = os.Args[3]
 		downloadFile(linkD, fileD)
-	}
+	}*/
 }
