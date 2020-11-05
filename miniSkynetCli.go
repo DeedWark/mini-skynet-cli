@@ -147,9 +147,10 @@ func main() {
 	case "download":
 		linkD = os.Args[2]
 		fileD = "downloadedFileSIASkynet"
-		if strings.ToLower(os.Args[3]) != "" {
+		if len(os.Args) > 2 {
 			fileD = os.Args[3]
 		}
+		downloadFile(linkD, fileD)
 	}
 
 	if fileU != "" {
