@@ -151,6 +151,7 @@ func main() {
 		if os.Args[3] != "" {
 			fileD = os.Args[3]
 		}
+	}
 		//os.Exit(0)
 
 	if fileU != "" {
