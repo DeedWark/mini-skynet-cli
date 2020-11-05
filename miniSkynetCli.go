@@ -148,7 +148,7 @@ func main() {
 		linkD = os.Args[2]
 		fileD = "downloadedFileSIASkynet"
 		if len(os.Args) > 2 {
-			fileD = os.Args[3]
+			fileD = os.Args[3:]
 		}
 		downloadFile(linkD, fileD)
 	}
