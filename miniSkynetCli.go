@@ -147,10 +147,9 @@ func main() {
 		os.Exit(1)
 	case "download":
 		linkD = os.Args[2]
+		fileD = os.Args[3]
 		if fileD == "" {
-			fileD = "downloadedFileSkynet"
-		} else {
-			fileD = os.Args[3]
+			fileD = "downloadedFileSIASkynet"
 		}
 		downloadFile(linkD, fileD)
 		os.Exit(1)
