@@ -144,16 +144,14 @@ func main() {
 	case "upload":
 		fileU = os.Args[2]
 		uploadFile(fileU)
-		os.Exit(1)
+		//os.Exit(0)
 	case "download":
 		linkD = os.Args[2]
-		fileD = os.Args[3]
-		if fileD == "" {
-			fileD = "downloadedFileSIASkynet"
+		fileD = "downloadedFileSIASkynet"
+		if os.Args[3] != "" {
+			fileD = os.Args[3]
 		}
-		downloadFile(linkD, fileD)
-		os.Exit(1)
-	}
+		//os.Exit(0)
 
 	if fileU != "" {
 		if *sec == true {
@@ -172,14 +170,4 @@ func main() {
 	} else {
 		usage()
 	}
-
-	/*switch os.Args[1] {
-	case "upload":
-		fileU = os.Args[2]
-		uploadFile(fileU)
-	case "download":
-		linkD = os.Args[2]
-		fileD = os.Args[3]
-		downloadFile(linkD, fileD)
-	}*/
 }
