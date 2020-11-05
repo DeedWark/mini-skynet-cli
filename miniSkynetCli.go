@@ -144,15 +144,13 @@ func main() {
 	case "upload":
 		fileU = os.Args[2]
 		uploadFile(fileU)
-		//os.Exit(0)
 	case "download":
 		linkD = os.Args[2]
 		fileD = "downloadedFileSIASkynet"
-		if os.Args[3] != "" {
+		/*if os.Args[3] != "" {
 			fileD = os.Args[3]
-		}
+		}*/
 	}
-		//os.Exit(0)
 
 	if fileU != "" {
 		if *sec == true {
