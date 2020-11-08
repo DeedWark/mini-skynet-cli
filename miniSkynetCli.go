@@ -61,13 +61,13 @@ func downloadFile(linkD string, fileD string) {
 func secureUpload(fileU string) {
 	opts := skynet.DefaultUploadOptions
 
-	//ASK USER SKYKEY
+	//ASK USER A KEY WORD
 	sc := bufio.NewScanner(os.Stdin)
 	fmt.Printf("Skykey: ")
 	sc.Scan()
-	skykey := sc.Text()
+	keyWord := sc.Text()
 
-	opts.SkykeyName = skykey
+	opts.SkykeyName = keyWord
 	skylink, err := client.UploadFile(fileU, opts)
 	if err != nil {
 		panic("Unable to upload: " + err.Error())
@@ -85,9 +85,9 @@ func secureDownload(linkD string, fileD string) {
 	sc := bufio.NewScanner(os.Stdin)
 	fmt.Printf("Skykey: ")
 	sc.Scan()
-	skykey := sc.Text()
+	keyWord := sc.Text()
 
-	opts.SkykeyName = skykey
+	opts.SkykeyName = keyWord
 	err := client.DownloadFile(fileD, linkD, opts)
 	if err != nil {
 		panic("Something went wrong, please try again.\nError: " + err.Error())
@@ -144,12 +144,16 @@ func main() {
 	case "upload":
 		fileU = os.Args[2]
 		uploadFile(fileU)
+		os.Exit(1)
 	case "download":
 		linkD = os.Args[2]
-		fileD = "downloadedFileSIASkynet"
-		if len(os.Args) > 3 {
+		if fileD == "" {
+			fileD = "downloadedFileSkynet"
+		} else {
 			fileD = os.Args[3]
 		}
+		downloadFile(linkD, fileD)
+		os.Exit(1)
 	}
 
 	if fileU != "" {
@@ -168,5 +172,15 @@ func main() {
 		uploadDir(fileDir)
 	} else {
 		usage()
+	}
+
+	switch os.Args[1] {
+	case "upload":
+		fileU = os.Args[2]
+		uploadFile(fileU)
+	case "download":
+		linkD = os.Args[2]
+		fileD = os.Args[3]
+		downloadFile(linkD, fileD)
 	}
 }
