@@ -9,7 +9,7 @@ import (
 	"os"
 	"strings"
 
-	skynet "github.com/NebulousLabs/go-skynet"
+	skynet "github.com/NebulousLabs/go-skynet/v2"
 )
 
 var fileU string          //file to upload
@@ -44,7 +44,6 @@ func uploadDir(fileDir string) {
 //DOWNLOAD A FILE (without decryption)
 //
 func downloadFile(linkD string, fileD string) {
-
 	cutLink := strings.Split(linkD, "/") //Remove "/""
 	linkDL := cutLink[len(cutLink)-1]    //Get only ID
 
@@ -61,13 +60,13 @@ func downloadFile(linkD string, fileD string) {
 func secureUpload(fileU string) {
 	opts := skynet.DefaultUploadOptions
 
-	//ASK USER A KEY WORD
+	//ASK USER SKYKEY
 	sc := bufio.NewScanner(os.Stdin)
 	fmt.Printf("Skykey: ")
 	sc.Scan()
-	keyWord := sc.Text()
+	skykey := sc.Text()
+	opts.SkykeyName = skykey
 
-	opts.SkykeyName = keyWord
 	skylink, err := client.UploadFile(fileU, opts)
 	if err != nil {
 		panic("Unable to upload: " + err.Error())
@@ -85,9 +84,9 @@ func secureDownload(linkD string, fileD string) {
 	sc := bufio.NewScanner(os.Stdin)
 	fmt.Printf("Skykey: ")
 	sc.Scan()
-	keyWord := sc.Text()
+	skykey := sc.Text()
 
-	opts.SkykeyName = keyWord
+	opts.SkykeyName = skykey
 	err := client.DownloadFile(fileD, linkD, opts)
 	if err != nil {
 		panic("Something went wrong, please try again.\nError: " + err.Error())
@@ -117,7 +116,6 @@ USAGE:
 }
 
 func main() {
-
 	//IF NO ARGS
 	if len(os.Args[1:]) < 1 {
 		usage()
@@ -144,16 +142,17 @@ func main() {
 	case "upload":
 		fileU = os.Args[2]
 		uploadFile(fileU)
-		os.Exit(1)
+		os.Exit(0)
 	case "download":
 		linkD = os.Args[2]
-		if fileD == "" {
-			fileD = "downloadedFileSkynet"
-		} else {
-			fileD = os.Args[3]
+		fileD = "downloadedFileSIASkynet"
+		if len(os.Args) > 4 {
+			fileD = os.Args[4]
+		} else if len(os.Args) >= 3 {
+			fileD = "downloadedFileSIASkynet"
 		}
 		downloadFile(linkD, fileD)
-		os.Exit(1)
+		os.Exit(0)
 	}
 
 	if fileU != "" {
@@ -172,15 +171,5 @@ func main() {
 		uploadDir(fileDir)
 	} else {
 		usage()
-	}
-
-	switch os.Args[1] {
-	case "upload":
-		fileU = os.Args[2]
-		uploadFile(fileU)
-	case "download":
-		linkD = os.Args[2]
-		fileD = os.Args[3]
-		downloadFile(linkD, fileD)
 	}
 }

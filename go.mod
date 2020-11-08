@@ -1,3 +1,5 @@
 module github.com/DeedWark/mini-skynet-cli
 
-require github.com/NebulousLabs/go-skynet v1.1.0
+go 1.15
+
+require github.com/NebulousLabs/go-skynet/v2 v2.0.1
