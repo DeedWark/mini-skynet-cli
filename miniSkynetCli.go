@@ -69,7 +69,8 @@ func secureUpload(fileU string) {
 
 	skylink, err := client.UploadFile(fileU, opts)
 	if err != nil {
-		panic("Unable to upload: " + err.Error())
+		fmt.Println("Unable to upload: " + err.Error())
+		os.Exit(1)
 	}
 	fmt.Printf("Upload successful, skylink: %v\n", skylink)
 }
@@ -80,7 +81,7 @@ func secureUpload(fileU string) {
 func secureDownload(linkD string, fileD string) {
 	opts := skynet.DefaultDownloadOptions
 
-	//ASK USER THE KEY WORD
+	//ASK USER SKYKEY
 	sc := bufio.NewScanner(os.Stdin)
 	fmt.Printf("Skykey: ")
 	sc.Scan()
@@ -117,7 +118,7 @@ USAGE:
 
 func main() {
 	//IF NO ARGS
-	if len(os.Args[1:]) < 1 {
+	if len(os.Args[1:]) < 2 {
 		usage()
 	}
 
@@ -138,22 +139,42 @@ func main() {
 	sec := flag.Bool("s", false, "Encrypted upload / Decrypted download (Skykey required if needed)")
 	flag.Parse()
 
+	//UPLOAD / DOWNLOAD ARGS
 	switch os.Args[1] {
 	case "upload":
 		fileU = os.Args[2]
-		uploadFile(fileU)
+		//SECURE UPLOAD
+		if *sec {
+			secureUpload(fileU)
+		} else {
+			uploadFile(fileU)
+		}
 		os.Exit(0)
 	case "download":
 		linkD = os.Args[2]
 		fileD = "downloadedFileSIASkynet"
-		if len(os.Args) > 4 {
-			fileD = os.Args[4]
-		} else if len(os.Args) >= 3 {
-			fileD = "downloadedFileSIASkynet"
+		//SECURE DOWNLOAD
+		if *sec {
+			if len(os.Args) > 4 {
+				if os.Args[3] == "-o" {
+					fileD = os.Args[4]
+				}
+			} else if len(os.Args) >= 3 {
+				if os.Args[3] == "-o" {
+					fileD = "downloadedFileSIASkynet"
+				} else if os.Args[3] != "-o" {
+					fileD = os.Args[3]
+				}
+			}
+		} else {
+			if len(os.Args) > 4 {
+				fileD = os.Args[4]
+			} else if len(os.Args) >= 3 {
+				fileD = "downloadedFileSIASkynet"
+			}
 		}
-		downloadFile(linkD, fileD)
-		os.Exit(0)
 	}
+	//	os.Exit(0)
 
 	if fileU != "" {
 		if *sec == true {
