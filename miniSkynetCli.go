@@ -99,12 +99,12 @@ func usage() {
 	fmt.Println(`Tools to simplify SIA Skynet - File sharing plateform for devs.
 
 USAGE:
--u, --upload		    upload a file
+-u, --upload		upload a file
 -a, --upload-directory  upload a directory (Must be one file minimum in the directory)
--d, --download		    download a file (default file "downloadedFileSkynet") - Add -o or --output
+-d, --download		download a file (default file "downloadedFileSkynet") - Add -o or --output
 -s                      upload/download with a Skykey (if needed)
-		   Upload   : You must type your skykey to encrypt
-		   Download : A skykey is required to download an encrypted file`)
+		           Upload   : You must type your skykey to encrypt
+		           Download : A skykey is required to download an encrypted file`)
 	ex := "Example\r\n" +
 		"UPLOAD        : " + os.Args[0] + " -u file.png\r\n" +
 		"              : " + os.Args[0] + " -a dir\r\n" +
