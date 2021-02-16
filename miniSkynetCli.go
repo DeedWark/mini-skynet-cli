@@ -12,11 +12,13 @@ import (
 	skynet "github.com/NebulousLabs/go-skynet/v2"
 )
 
-var fileU string          //file to upload
-var fileDir string        //directory to upload
-var fileD string          //file to download
-var linkD string          //uploaded file link
-var client = skynet.New() //INIT THE CLIENT
+var (
+	fileU string          //file to upload
+	fileDir string        //directory to upload
+	fileD string          //file to download
+	linkD string          //uploaded file link
+	client = skynet.New() //INIT THE CLIENT
+)
 
 //
 //UPLOAD A FILE (without encryption)
